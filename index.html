@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
   <meta charset="UTF-8">
@@ -31,7 +31,7 @@
     .barkod-input input {
       text-align: center;
       padding: 10px 20px;
-      font-size: 2rem;
+      font-size: clamp(1rem, 2vw, 2rem);
       border: none;
       border-radius: 100px;
       background-color: #fff;
@@ -51,7 +51,7 @@
       font-weight: normal;
       text-transform: uppercase;
       margin-bottom: 30px;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 2.2vw, 2.4rem);
       letter-spacing: 1px;
     }
 
@@ -79,6 +79,10 @@
       font-size: 1rem;
     }
 
+    #downloadSVG {
+      visibility: hidden;
+    }
+
     .card {
       padding: .3rem 1rem;
       background-color: #fff;
@@ -90,11 +94,29 @@
       justify-content: center;
       position: relative;
       width: 300px;
+      border: 2px solid #fff;
+      transition: all ease-in-out .2s;
     }
 
     .card small {
       color: #c7c7c7;
       position: absolute;
+    }
+
+    .card:has(svg g) small {
+      display: none;
+    }
+
+    .card:has(svg g) {
+      border-color: greenyellow;
+    }
+
+    .card:has(svg g):hover {
+      transform: scale(1.2);
+    }
+
+    body:has(.card svg g) #downloadSVG {
+      visibility: visible;
     }
   </style>
 </head>
@@ -116,7 +138,7 @@
   </div>
 
   <div>
-    <button id="downloadSVG">SVG İndir</button>
+    <button id="downloadSVG">SVG Dosyası İndir</button>
   </div>
 
   <!-- KAYNAK: https://lindell.me/JsBarcode/ -->
