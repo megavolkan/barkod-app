@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barcode 0.1</title>
+  <title>BARKOD UYGULAMASI // v0.1</title>
 
   <style>
     * {
@@ -145,6 +145,10 @@
   <script src="./jsBarcode.js"></script>
 
   <script>
+    // Firefox css :has() fonksiyon desteğine sahip değil
+    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+      alert('BU PROGRAM FIREFOX TARAYICISI İLE UYUMLU DEĞİLDİR!')
+    }
 
     const barkodInput = document.getElementById('barkodInput')
     const btnBarkodOlustur = document.getElementById('barkodOlustur')
