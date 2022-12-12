@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BARKOD UYGULAMASI // v0.1</title>
+  <title>BARKOD UYGULAMASI // v0.1.5</title>
 
   <style>
     * {
@@ -46,11 +46,11 @@
 
     #barcode-bg {
       width: 100vw;
-      height: 100vh;
+      height: 50vh;
       bottom: 0;
       position: absolute;
       background-image: url(./barcode-bg.svg);
-      background-size: 100%;
+      background-size: cover;
       background-repeat: no-repeat;
       background-position: bottom center;
       z-index: -1;
@@ -168,7 +168,7 @@
   </div>
 
   <footer>
-    <small>BARKOD UYGULAMASI v.0.1.3</small>
+    <small>BARKOD UYGULAMASI v.0.1.5</small>
   </footer>
 
   <!-- KAYNAK: https://lindell.me/JsBarcode/ -->
@@ -197,24 +197,29 @@
 
 
     function barkodOlustur() {
-      const barkodNo = barkodInput.value
-      //alert(barkodNo)
+      try {
+        const barkodNo = barkodInput.value
+        //alert(barkodNo)
 
-      if (barkodNo.length !== 13 || barkodNo.length === 0) {
-        alert('13 Karakterlik bir barkod no giriniz')
-        return null
+        if (barkodNo.length !== 13 || barkodNo.length === 0) {
+          alert('13 Karakterlik bir barkod no giriniz')
+          return null
+        }
+
+        JsBarcode("#barcode", barkodNo, {
+          format: "ean13",
+          font: "Tahoma, monospace",
+          height: 50,
+          //fontOptions: "bold"
+          //lastChar: ">"
+        });
+
+        //Barkod numarasını fonksyon dışında erişilebilir yapıyoruz
+        return barkodNo
+      } catch (error) {
+        alert('HATA: ' + error)
       }
 
-      JsBarcode("#barcode", barkodNo, {
-        format: "ean13",
-        font: "Tahoma",
-        height: 50,
-        //fontOptions: "bold"
-        //lastChar: ">"
-      });
-
-      //Barkod numarasını fonksyon dışında erişilebilir yapıyoruz
-      return barkodNo
     }
 
     //console.log('KULLANILAN BARKOD No:' + barkodOlustur())
